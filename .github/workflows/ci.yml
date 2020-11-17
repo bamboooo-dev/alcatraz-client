@@ -32,4 +32,4 @@ jobs:
         run: |
           docker --context monaka container stop alcatraz_ui
           docker --context monaka image build . -t alcatraz_ui
-          docker --context monaka container run -d -p 3000:3000 alcatraz_ui
+          docker --context monaka container run -d --name alcatraz_ui -p 3000:3000 alcatraz_ui
