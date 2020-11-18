@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 
-import AlignItemsList from './alignItemsList';
+import AlignItemsList from "./alignItemsList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -39,7 +39,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -47,6 +47,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
+  },
+  appbar: {
+    backgroundColor: "#fff",
+  },
+  tabText: {
+    color: "#2B2B2B",
+    fontWeight: "bold",
+  },
+  indicator: {
+    backgroundColor: theme.palette.info.main,
   },
 }));
 
@@ -60,10 +70,21 @@ export default function SimpleTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
-          <Tab label="すれ違い" {...a11yProps(0)} />
-          <Tab label="メッセージ" {...a11yProps(1)} />
+      <AppBar position="static" className={classes.appbar}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="simple tabs example"
+          variant="fullWidth"
+          // textColor="primary"
+          classes={{ indicator: classes.indicator }}
+        >
+          <Tab className={classes.tabText} label="すれ違い" {...a11yProps(0)} />
+          <Tab
+            className={classes.tabText}
+            label="メッセージ"
+            {...a11yProps(1)}
+          />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
