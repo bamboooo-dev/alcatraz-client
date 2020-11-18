@@ -9,25 +9,31 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
+  toolbar: {
+    backgroundColor: "white"
+  },
   title: {
     flexGrow: 1,
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "#2B2B2B"
   },
 }));
 
-export default function Header() {
+export const Header = (props) => {
   const classes = useStyles();
 
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" className={classes.title}>
-          Alcatraz
+    <AppBar position="static" elevation={0}>
+      <Toolbar className={classes.toolbar} shadow="none">
+        <Typography variant="subtitle1" className={classes.title}>
+          {props.title}
         </Typography>
-        <Button color="inherit">Login</Button>
       </Toolbar>
     </AppBar>
   )
+}
+
+Header.defaultProps = {
+  title: "",
 }
